@@ -8,7 +8,7 @@ This script does some unspeakable things to allow local connections and inject t
 
 Credits:
 
-    https://stackoverflow.com/questions/105034/
-    https://stackoverflow.com/questions/26447335/
-    https://stackoverflow.com/questions/2303147/
+ - https://stackoverflow.com/questions/105034/
+ - https://stackoverflow.com/questions/26447335/
+ - https://stackoverflow.com/questions/2303147/
 
