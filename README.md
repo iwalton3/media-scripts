@@ -1,6 +1,6 @@
 # Media Scripts
 
-This repository contains scripts that are useful for managing media files. Some of them are Plex specific, while others will work with any media files in general.
+This repository contains scripts that are useful for managing media files. Some of them are Plex specific, while others will work with any media files in general. These were previously posted on the Plex Forums, but this repository serves as a more organized home for them.
 
 ## General
 
