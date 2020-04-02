@@ -2,7 +2,7 @@
 
 Greasy Fork: https://greasyfork.org/en/scripts/398049-mpv-shim-local-connection
 
-Allow Plex to connect to MPV Shim running on the same computer without a local Plex server on the same network. Simply select "local (direct)" as the client and cast. Note that the script may fail in unpredictable ways if Plex MPV Shim is not running.
+Allow Plex to connect to [MPV Shim](https://github.com/iwalton3/plex-mpv-shim) running on the same computer without a local Plex server on the same network. Simply select "local (direct)" as the client and cast. Note that the script may fail in unpredictable ways if Plex MPV Shim is not running.
 
 This script does some unspeakable things to allow local connections and inject the data into the Plex API.
 

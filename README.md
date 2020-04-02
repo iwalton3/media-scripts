@@ -11,6 +11,6 @@ This repository contains scripts that are useful for managing media files. Some 
 ## Plex Specific
 
  - [subtitle-tool](https://github.com/iwalton3/media-scripts/tree/master/subtitle-tool-for-plex) - Set an entire anime series in Plex to subtitled or dubbed.
- - [mpv-shim-local-connection](https://github.com/iwalton3/media-scripts/tree/master/mpv-shim-local-connection-for-plex) - Connect to MPV Shim without a local Plex server.
+ - [mpv-shim-local-connection](https://github.com/iwalton3/media-scripts/tree/master/mpv-shim-local-connection-for-plex) - Connect to [MPV Shim](https://github.com/iwalton3/plex-mpv-shim) without a local Plex server.
  - [inject-titles](https://github.com/iwalton3/media-scripts/tree/master/inject-titles-for-plex) - Inject the subtitle and audio track titles into the Plex interface.
 
