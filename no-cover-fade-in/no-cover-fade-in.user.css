@@ -1,0 +1,6 @@
+@-moz-document domain("app.plex.tv") {
+div[class*="CrossFadeImage-crossFade"] {
+    animation-name: none !important;
+}
+}
+
