@@ -45,7 +45,7 @@ if has_bad_tracks:
     subprocess.check_call(options)
     orig_size = os.path.getsize(fname)
     new_size = os.path.getsize(tempfile)
-    if orig_size * 0.75 > new_size:
+    if orig_size * 0.50 > new_size:
         print("File {0} is too small after conversion.".format(fname))
         os.remove(tempfile)
         sys.exit(1)
