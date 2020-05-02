@@ -1,0 +1,61 @@
+diff --git a/lib/_included_packages/plexnet/plexmedia.py b/lib/_included_packages/plexnet/plexmedia.py
+index 6ad46d3..d6c4afe 100644
+--- a/lib/_included_packages/plexnet/plexmedia.py
++++ b/lib/_included_packages/plexnet/plexmedia.py
+@@ -120,6 +120,17 @@ class PlexMedia(plexobjects.PlexObject):
+         if self.bitrate.asInt() > 0:
+             details.append(util.bitrateToString(self.bitrate.asInt() * 1000))
+
++        # PATCH 2 of 2 - Add media information.
++        if not self.title:
++            import re
++            title_re = re.compile(".* \\((.*)\\)$")
++            for part in self.parts:
++                for stream in part.streams:
++                    fmt = title_re.match(stream.displayTitle)
++                    if fmt:
++                        self.title = "{0} {1}".format(fmt.group(1), self.container_)
++                        break
++
+         detailString = ', '.join(details)
+         return (log_safe and ' * ' or u" \u2022 ").join([_f for _f in [self.title, detailString] if _f])
+
+diff --git a/lib/_included_packages/plexnet/plexstream.py b/lib/_included_packages/plexnet/plexstream.py
+index 26f3dd1..bb8c1f9 100644
+--- a/lib/_included_packages/plexnet/plexstream.py
++++ b/lib/_included_packages/plexnet/plexstream.py
+@@ -43,29 +43,11 @@ class PlexStream(plexobjects.PlexObject):
+
+         if streamType == self.TYPE_VIDEO:
+             title = self.getCodec() or translate_func("Unknown")
+-        elif streamType == self.TYPE_AUDIO:
+-            codec = self.getCodec()
+-            channels = self.getChannels(translate_func)
+-
+-            if codec != "" and channels != "":
+-                title += u" ({0} {1})".format(codec, channels)
+-            elif codec != "" or channels != "":
+-                title += u" ({0}{1})".format(codec, channels)
+-        elif streamType == self.TYPE_SUBTITLE:
+-            extras = []
+-
+-            codec = self.getCodec()
+-            if codec:
+-                extras.append(codec)
+-
+-            if not self.key:
+-                extras.append(translate_func("Embedded"))
+-
+-            if self.forced.asBool():
+-                extras.append(translate_func("Forced"))
+-
+-            if len(extras) > 0:
+-                title += u" ({0})".format('/'.join(extras))
++        elif streamType == self.TYPE_AUDIO or streamType == self.TYPE_SUBTITLE:
++            # PATCH 1 of 2 - Show full subtitle/audio names.
++            title = self.displayTitle
++            if self.title:
++                title = "{0} ({1})".format(self.displayTitle, self.title)
+         elif streamType == self.TYPE_LYRICS:
+             title = translate_func("Lyrics")
+             if self.format:

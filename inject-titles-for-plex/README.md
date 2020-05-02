@@ -36,6 +36,10 @@ Plex Forum: https://forums.plex.tv/t/552743
 2. Download the [tweak file](https://github.com/iwalton3/media-scripts/blob/master/inject-titles-for-plex/inject-titles-for-plex.js).
 3. Append the file to the newest JS bundle named `chunk-1-[hash]-plex-[version].js`.
 
+## Kodi
+
+Please see the kodi folder for details.
+
 ## Filename Version
 
 If you prefer that the media version selection shows the filename of the media version instead of the codec and file format, you can use this version. The dialog can get a bit crowded if you have long filenames though. (This also includes the subtitle/audio name tweak. Do not install both.)
