@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     Show Subtitle/Audio Names for Plex 
-// @version  2.3
+// @version  2.4
 // @grant    none
 // @include  https://app.plex.tv/*
 // @description Add the subtitle, video, audio track titles and media version info to the Plex Web app.
@@ -67,16 +67,29 @@ function main () {
             actual.onreadystatechange = function() {
                 if (this.readyState == 4 && (actual.responseType == '' || actual.responseType == 'text')) {
                     try {
-                        self.responseText = intercept(actual.responseURL, actual.responseText);
+                        self._responseText = intercept(actual.responseURL, actual.responseText);
                     } catch (err) {
                         console.error(err);
-                        self.responseText = actual.responseText;
                     }
                 }
                 if (self.onreadystatechange) {
                     return self.onreadystatechange();
                 }
             };
+
+            // add all proxy getters/setters
+            ["responseText"].forEach(function(item) {
+                Object.defineProperty(self, item, {
+                    get: function() {
+                        if (self.hasOwnProperty("_" + item)) {
+                            return self["_" + item];
+                        } else {
+                            return actual[item];
+                        }
+                    },
+                    set: function(val) {actual[item] = val;}
+                });
+            });
 
             // add all proxy getters/setters
             ["status", "statusText", "responseType", "response", "readyState", "responseXML",

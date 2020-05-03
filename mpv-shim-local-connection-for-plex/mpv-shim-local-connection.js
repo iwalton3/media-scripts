@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     MPV Shim Local Connection
-// @version  2
+// @version  2.1
 // @grant GM.xmlHttpRequest
 // @include  https://app.plex.tv/*
 // @connect  127.0.0.1
@@ -249,9 +249,9 @@ function main () {
             actual.onreadystatechange = function() {
                 if (this.readyState == 4 && (actual.responseType == '' || actual.responseType == 'text')) {
                     try {
-                        self.responseText = intercept(actual.responseURL, actual.responseText);
+                        self._responseText = intercept(actual.responseURL, actual.responseText);
                     } catch (err) {
-                        self.responseText = actual.responseText;
+                        self._responseText = actual.responseText;
                     }
                 }
                 if (self.onreadystatechange) {
@@ -268,7 +268,7 @@ function main () {
             });
 
             // add all proxy getters/setters
-            ["response", "statusText", "status", "readyState", "responseURL", "responseType"].forEach(function(item) {
+            ["response", "statusText", "status", "readyState", "responseURL", "responseType", "responseText"].forEach(function(item) {
                 Object.defineProperty(self, item, {
                     get: function() {
                         if (self.hasOwnProperty("_" + item)) {

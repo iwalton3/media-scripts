@@ -50,10 +50,9 @@ function intercept(url, responseText) {
         actual.onreadystatechange = function() {
             if (this.readyState == 4 && (actual.responseType == '' || actual.responseType == 'text')) {
                 try {
-                    self.responseText = intercept(actual.responseURL, actual.responseText);
+                    self._responseText = intercept(actual.responseURL, actual.responseText);
                 } catch (err) {
                     console.error(err);
-                    self.responseText = actual.responseText;
                 }
             }
             if (self.onreadystatechange) {
@@ -66,6 +65,20 @@ function intercept(url, responseText) {
         "upload", "ontimeout, timeout", "withCredentials", "onload", "onerror", "onprogress"].forEach(function(item) {
             Object.defineProperty(self, item, {
                 get: function() {return actual[item];},
+                set: function(val) {actual[item] = val;}
+            });
+        });
+
+        // add all proxy getters/setters
+        ["responseText"].forEach(function(item) {
+            Object.defineProperty(self, item, {
+                get: function() {
+                    if (self.hasOwnProperty("_" + item)) {
+                        return self["_" + item];
+                    } else {
+                        return actual[item];
+                    }
+                },
                 set: function(val) {actual[item] = val;}
             });
         });
