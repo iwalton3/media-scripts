@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     MPV Shim Local Connection
-// @version  2.1
+// @version  2.2
 // @grant GM.xmlHttpRequest
 // @include  https://app.plex.tv/*
 // @connect  127.0.0.1
@@ -306,7 +306,7 @@ function main () {
                                 self._readyState = 4;
                                 self._status = 200;
                                 self._statusText = "OK";
-                                self.responseText = result.response;
+                                self._responseText = result.response;
                                 self.headers = result.headers;
                                 if (self.onreadystatechange) {
                                     self.onreadystatechange();
@@ -333,7 +333,7 @@ function main () {
                             self._statusText = "OK";
                             self._readyState = 4;
                             
-                            self.responseText = "";
+                            self._responseText = "";
                             if (parsedURL.pathname == "/clients") {
                                 const xml = parser.parseFromString('<MediaContainer/>', 'text/xml');
                                 const s = xml.createElement("Server");
@@ -349,11 +349,11 @@ function main () {
                                 s.setAttribute("protocolVersion", "1");
                                 s.setAttribute("protocolCapabilities", "timeline,playback,navigation,playqueues");
                                 xml.children[0].appendChild(s);
-                                self.responseText = serializer.serializeToString(xml);
+                                self._responseText = serializer.serializeToString(xml);
                             } else if (parsedURL.pathname == "/neighborhood/devices") {
                                 return "<MediaContainer size=\"0\"/>";
                             } else if (parsedURL.pathname == "/media/providers") {
-                                self.responseText = JSON.stringify(fake_cast_server_provider);
+                                self._responseText = JSON.stringify(fake_cast_server_provider);
                             } else if (parsedURL.pathname == "/player/proxy/poll") {
                                 return;
                             } else {
@@ -403,7 +403,7 @@ function main () {
             Object.defineProperty(self, "responseXML", {
                 get: function() {
                     if (self.override) {
-                        return parser.parseFromString(self.responseText, "text/xml");
+                        return parser.parseFromString(self._responseText, "text/xml");
                     } else {
                         return actual[item];
                     }
