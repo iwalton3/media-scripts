@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     Show Subtitle/Audio Names and Media File Segment for Plex 
-// @version  2.4
+// @version  2.5
 // @grant    none
 // @include  https://app.plex.tv/*
 // @description Add the subtitle, video, audio track titles and media version segment (stuff in {}) to the Plex Web app.
