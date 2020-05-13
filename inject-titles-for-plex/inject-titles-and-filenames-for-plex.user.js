@@ -20,7 +20,7 @@ function main () {
     }
   
     function intercept(url, responseText) {
-        if (url.indexOf("/library/metadata/") == -1 ) return responseText;
+        if (url.indexOf("/library/metadata/") == -1 && url.indexOf("/status/sessions") == -1) return responseText;
         let response = JSON.parse(responseText);
         if (!response.hasOwnProperty("MediaContainer") ||
             !response.MediaContainer.hasOwnProperty("Metadata")) return responseText;
