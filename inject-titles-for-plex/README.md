@@ -19,6 +19,8 @@ Plex Forum: https://forums.plex.tv/t/552743
     - OSX: `/Applications/Plex Media Player.app/Contents/Resources/web-client/desktop/js`
 2. Download the [tweak file](https://github.com/iwalton3/media-scripts/blob/master/inject-titles-for-plex/inject-titles-for-plex.js).
 3. Append the file to the newest JS bundle named `chunk-2-[hash]-plex-[version].js`.
+    - If `chunk-2` doesn't work, check the `index.html` and look for a chunk that is included.
+    - You can also just embed the entire script in a `<script>` tag and add it to `index.html`.
 
 ## Plex Media Player (TV Mode)
 
@@ -35,6 +37,8 @@ Plex Forum: https://forums.plex.tv/t/552743
     - Windows: `C:\Program Files\Plex\Plex\web-client\js`
 2. Download the [tweak file](https://github.com/iwalton3/media-scripts/blob/master/inject-titles-for-plex/inject-titles-for-plex.js).
 3. Append the file to the newest JS bundle named `chunk-1-[hash]-plex-[version].js`.
+    - If `chunk-1` doesn't work, check the `index.html` and look for a chunk that is included.
+    - You can also just embed the entire script in a `<script>` tag and add it to `index.html`.
 
 ## Kodi
 
