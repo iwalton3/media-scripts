@@ -20,7 +20,7 @@ do
             offset=$(cat "$i.txt")
         else
             ffmpeg -loglevel quiet -nostdin -y -i subtitle/"$s" subtmp.srt < /dev/null
-            offset=$(subsync video/"$v" -i subtmp.srt 2>&1 1>/dev/null | grep 'offset seconds' | sed 's/.*: /1000*/g' | bc | sed 's/\..*//g')
+            offset=$(subsync --no-fix-framerate video/"$v" -i subtmp.srt 2>&1 1>/dev/null | grep 'offset seconds:' | sed 's/.*: \([^ ]\+\).*/1000*\1/g' | bc | sed 's/\..*//g')
             echo "Sync: $offset"
             rm subtmp.srt
             if [[ "${offset#-}" -gt "20000" ]]
