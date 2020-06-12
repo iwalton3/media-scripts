@@ -8,7 +8,7 @@ These scripts automatically process video files and sync the subtitle or audio t
 
 You'll need a copy of mkvtoolnix and python3 for these scripts to work. I suggest using cygwin or WSL to run the scripts if you are not running Linux. The sync work is done by [subsync](https://github.com/smacke/subsync) and [align-videos-by-sound](https://github.com/jeorgen/align-videos-by-sound), which should be installed with the following commands:
 ```bash
-sudo pip3 install git+https://github.com/smacke/subsync
+sudo pip3 install ffsubsync
 sudo pip3 install git+https://github.com/jeorgen/align-videos-by-sound
 ```
 
