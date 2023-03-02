@@ -7,6 +7,7 @@ This repository contains scripts that are useful for managing media files. Some 
  - [force-signs](https://github.com/iwalton3/media-scripts/tree/master/force-signs) - Mark subtitle tracks with visible text translations as forced.
  - [media-discard](https://github.com/iwalton3/media-scripts/tree/master/media-discard) - Remove audio and subtitle tracks not in your preferred languages.
  - [subtitle-audio-transfer](https://github.com/iwalton3/media-scripts/tree/master/subtitle-audio-transfer) - Transfer subtitles or audio tracks between files and sync them.
+ - [detect-static-image](https://github.com/iwalton3/media-scripts/tree/master/detect-static-image) - Detects video files which are just an image and not actually video.
 
 ## Plex Specific
 
