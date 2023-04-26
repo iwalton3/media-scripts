@@ -187,7 +187,7 @@ function main () {
             xml.children[0].appendChild(s);
             inject = false;
             return serializer.serializeToString(xml);
-        } else if (parsedURL.pathname == "/api/v2/resources" && parsedURL.hostname == "plex.tv" && inject) {
+        } else if (parsedURL.pathname == "/api/v2/resources" && parsedURL.hostname == "clients.plex.tv" && inject) {
             const parsed = JSON.parse(responseText);
             parsed.unshift(fake_cast_server_resource);
             return JSON.stringify(parsed);
